@@ -10,10 +10,16 @@ public class Wednesday {
 		System.out.println("Enter a word: ");
 		String s = sc.nextLine();
 		System.out.println(reverse(s));
-
+		
+		System.out.println("Enter Word: ");
+		String s1 = sc.nextLine();
+		System.out.println(reverseReverse(s1));
+		
+		/*
 		System.out.println("Enter if the word is a palindrome: ");
 		String sw = sc.nextLine();
 		System.out.println(palindrome(sw));
+		*/
 	}
 
 	public static String reverse(String s) {
@@ -26,6 +32,16 @@ public class Wednesday {
 		}
 		return result.toString();
 	}
+		
+	//Reverse a String with recursion
+	public static String reverseReverse(String s) {
+		if(s.isEmpty()) {
+		return s;
+	}else {
+		
+		return reverseReverse(s.substring(1)) + s.charAt(0);
+	}
+}
 
 	public static boolean palindrome(String s) { //Does not work.
 		String reverse = "";

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+<body>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="#">Navbar</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav">
+                            <li class="nav-item active">
+                              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="addbook.html">Add Book</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="apifetch.html">Api fetch call</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
+        <div class="container mt-4">
+                <h1 class="display-4 text-center">
+                  <i></i> My<span>Book</span>List</h1>
+                  <form id="book-form">
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" id="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="author">Author</label>
+                      <input type="text" id="author" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="genre">Genre</label>
+                      <input type="text" id="genre" class="form-control">
+                    </div>
+                    <div class = "form-group">
+                      <label for = "coverimage">Cover Image</label>
+                      <input type = "file" id = "coverimage" accept = "image/*">
+                    </div>
+                    <input type="submit" value="Add Book" class="btn btn-primary btn-block">
+                  </form>
+                  <table class="table table-striped mt-5">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Image</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="book-list"></tbody>
+                  </table>
+              </div> 
+</body>
+<script src="book.js"></script>
+</html>

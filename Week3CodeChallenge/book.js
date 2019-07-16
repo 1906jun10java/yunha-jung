@@ -26,14 +26,14 @@ class Book {
         <td>${book.genre}</td>
         <td>${book.coverimage}</td>
       `;
-  
+      //Appends a node as the last child of a node.
       list.appendChild(row);
     }
     static clearFields() {
       document.querySelector('#title').value = '';
       document.querySelector('#author').value = '';
       document.querySelector('#genre').value = '';
-      document.querySelector('coverimage').value = '';
+      document.querySelector('#coverimage').value = '';
     }
   }
   
@@ -41,10 +41,13 @@ class Book {
   class Store {
     static getBooks() {
       let books;
-      if(localStorage.getItem('books') === null) {
+      //Change from localStorage to sessionStorage.
+      if(sessionStorage.getItem('books') === null) {
         books = [];
       } else {
-        books = JSON.parse(localStorage.getItem('books'));
+        //The data becomes a JavaScript object.
+        //Change from localStorage to sessionStorage.
+        books = JSON.parse(sessionStorage.getItem('books'));
       }
   
       return books;
@@ -52,7 +55,9 @@ class Book {
     static addBook(book) {
       const books = Store.getBooks();
       books.push(book);
-      localStorage.setItem('books', JSON.stringify(books));
+       //Convert a JavaScript object into a string.
+       //Change from localStorage to sessionStorage.
+       sessionStorage.setItem('books', JSON.stringify(books));
     }
   }
   
@@ -81,18 +86,7 @@ class Book {
       UI.clearFields();
     }
   );
-  $("input").change(function(e) {
-
-    for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-        
-        var file = e.originalEvent.srcElement.files[i];
-        
-        var img = document.createElement("img");
-        var reader = new FileReader();
-        reader.onloadend = function() {
-             img.src = reader.result;
-        }
-        reader.readAsDataURL(file);
-        $("input").after(img);
-    }
-});
+      var loadFile = function(event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(event.target.files[0]);
+    };

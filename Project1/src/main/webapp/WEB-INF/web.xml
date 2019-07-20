@@ -20,4 +20,13 @@
   	<servlet-name>Employee</servlet-name>
   	<url-pattern>/employee</url-pattern>
   </servlet-mapping>
+     <servlet>
+  	<servlet-name>Manager</servlet-name>
+  	<servlet-class>com.revature.servlet.ManagerServlet</servlet-class> <!-- FULLY QUALIFIED CLASSNAME -->
+  </servlet>
+  <!-- in this element, we map the servlet to a url pattern -->
+  <servlet-mapping>
+  	<servlet-name>Manager</servlet-name>
+  	<url-pattern>/manager</url-pattern>
+  </servlet-mapping>
 </web-app>

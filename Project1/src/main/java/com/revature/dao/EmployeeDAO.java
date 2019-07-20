@@ -1,9 +1,13 @@
 package com.revature.dao;
 
-public class EmployeeDAO {
+import java.io.IOException;
+import java.util.List;
 
-	public EmployeeDAO() {
-		// TODO Auto-generated constructor stub
-	}
+import com.revature.bean.Employee;
 
+public interface EmployeeDAO {
+	int createEmployee(Employee employee);
+	Employee getEmployeeById(int id);
+	List<Employee> getAllEmployee() throws IOException;
+	int updateEmployeeById(int id) throws IOException;
 }

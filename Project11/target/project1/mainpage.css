@@ -1,0 +1,92 @@
+.request {
+    margin: 100px;
+
+}
+.wrapper {
+    margin: 50px;
+    padding: 15px 40px 50px;
+    background-color: white;
+}
+
+.container {
+    font-size: 18px;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form-signin {
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 15px 40px 50px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.form-request {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.form-signin, .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 30px;
+}
+
+.form-signin input[type="text"], .form-signin input[type="password"] {
+    margin-bottom: 15px;
+}
+
+.nav-log {
+    float: right;
+}
+
+.nav-item {
+    margin-left: 60px;
+}
+
+th {
+    background-color: navy;
+    color: white;
+}
+
+td {
+    max-width: 800px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+h2 {
+    text-align: center;
+}
+
+#user_profile {
+    align-content: center;
+    text-align: center;
+}
+
+.row {
+    margin-top: 50px;
+}
+
+.btn-danger {
+    margin-left: 20px;
+}
+
+table td.shrink {
+    white-space:nowrap;
+    padding:20px;
+}
+table td.expand {
+    width: 40%;
+    padding:20px;
+}
+
+p {
+    margin-left: 30%;
+}

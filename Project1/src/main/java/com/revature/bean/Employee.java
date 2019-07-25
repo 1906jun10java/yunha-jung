@@ -2,20 +2,24 @@ package com.revature.bean;
 
 public class Employee {
 
-	public Employee(int id, String firstname, String lastname, String username, String email, int employeetype) {
+	public Employee(int id, String firstname, String lastname, int manager_id, String username, String password, String email, int employeetype) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.manager_id = manager_id;
 		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.employeetype = employeetype;
 	}
-	public Employee(String firstname, String lastname, String username, String email, int employeetype) {
+	public Employee(String firstname, String lastname, int manager_id, String username, String password, String email, int employeetype) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.manager_id = manager_id;
 		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.employeetype = employeetype;
 	}
@@ -26,7 +30,9 @@ public class Employee {
 	private int id;
 	private String firstname;
 	private String lastname;
+	private int manager_id;
 	private String username;
+	private String password;
 	private String email;
 	private int employeetype;
 	public int getId() {
@@ -69,6 +75,18 @@ public class Employee {
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
 				+ ", email=" + email + "]";
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getManager_id() {
+		return manager_id;
+	}
+	public void setManager_id(int manager_id) {
+		this.manager_id = manager_id;
 	}
 }
 

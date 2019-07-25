@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.bean.Employee;
 import com.revature.service.AuthenticationService;
@@ -36,11 +37,22 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Credentials cred = new Credentials(req.getParameter("username"), req.getParameter("password"));
 		Employee u = authService.authenticateEmployee(cred);
+		HttpSession session = req.getSession();
 		if(u != null) {
-			// resp.getWriter().write("Welcome, " + u.getFirstname() + u.getLastname());
-			// redirect user to their profile page if authenticated.
+			session.setAttribute("id", u.getId());
+			session.setAttribute("firtname", u.getFirstname());
+			session.setAttribute("lastname", u.getLastname());
+			session.setAttribute("manager_id", u.getManager_id());
+			session.setAttribute("username", u.getUsername());
+			session.setAttribute("password", u.getPassword());
+			session.setAttribute("employeetype", u.getEmployeetype());
+			session.setAttribute("problem", null);
+			
 			resp.sendRedirect("employee");
+			
 		}else{
+			session.setAttribute("problem", "INVALID CRENDTIALS");
+			
 			resp.sendRedirect("login");
 	}
 	}

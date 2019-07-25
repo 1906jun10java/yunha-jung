@@ -8,12 +8,11 @@ public class AuthenticationService {
 		
 	}
 	public Employee authenticateEmployee(Credentials cred) {
-		Employee u = null;
+		Employee u = new Employee();
 		
-		if(cred.getUsername().equals("merlin") && cred.getPassword().equals("cat")) {
-			u = new Employee(1, "Merlin", "Higgins", cred.getUsername(), "merlin@wizcat.com", 1);
+		if(cred.getUsername().equals(u.getUsername()) && cred.getPassword().equals(u.getPassword())) {
+			u = new Employee();
 		}
-		
 		return u;
 	}
 

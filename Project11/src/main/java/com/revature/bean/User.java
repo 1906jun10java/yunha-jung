@@ -9,6 +9,18 @@ public class User {
     private String last_Name;
     private boolean isEmployee;
 
+    public User(){
+
+    }
+
+    public User(int id, String username, String first_Name, String last_Name, String email) {
+        this.id = id;
+        this.username = username;
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+        this.email = email;
+    }
+
     public int getId() {
 
         return id;

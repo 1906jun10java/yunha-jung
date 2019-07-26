@@ -26,6 +26,21 @@ document.getElementById("delete-cookies").addEventListener('click', evt=> {
     console.log(user_id);
 })
 
+
+function newElement(content, amount, created, status) {
+    let table = document.getElementById("myTable");
+    let row = table.insertRow(1);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+
+    cell1.innerHTML = "$ " + amount;
+    cell2.innerHTML = content;
+    cell3.innerHTML = created;
+    cell4.innerHTML = status;
+}
+
 function getCookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
@@ -41,18 +56,5 @@ function getCookie(cname) {
     return "";
 }
 
-function newElement(content, amount, created, status) {
-    let table = document.getElementById("myTable");
-    let row = table.insertRow(1);
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-
-    cell1.innerHTML = "$ " + amount;
-    cell2.innerHTML = content;
-    cell3.innerHTML = created;
-    cell4.innerHTML = status;
-}
 
 

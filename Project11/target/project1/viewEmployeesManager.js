@@ -42,10 +42,10 @@ function newElement2(firstName,lastName,content, amount, created, status) {
 
     let row = table.insertRow(1);
     let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-    let cell5 = row.insertCell(4);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
 
 
     cell1.innerHTML =  firstName + " " + lastName;
@@ -70,8 +70,8 @@ function getTheReimData(id) {
         dataType: "json",
 
         success: function(data) {
-            let obj1 = JSON.stringify(data.employeeReimbursements);
-            let obj = JSON.parse(obj1);
+            var obj1 = JSON.stringify(data.employeeReimbursements);
+            var obj = JSON.parse(obj1);
             for (k = 0; k < obj.length; k++) {
                 newElement2(obj[k].firstName,obj[k].lastName,obj[k].theContents,obj[k].amount,obj[k].created,obj[k].status);
             }

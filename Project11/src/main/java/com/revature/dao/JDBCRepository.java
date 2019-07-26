@@ -21,34 +21,6 @@ public class JDBCRepository {
         this.manager = manager;
     }
 
-    public ArrayList<Reimbursement> findALLPendingReimbursement() {
-        ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
-        try(Connection c = manager.getConnection()) {
-            String sql = "SELECT first_name, last_name,content,reimbursement_id,amount,reimbursement.status_id,status,created \n" +
-                    "FROM reimbursement join the_user on the_user.user_id = reimbursement.user_id \n" +
-                    "join reimbursement_status on reimbursement.status_id = reimbursement_status.status_id \n" +
-                    "WHERE reimbursement.status_id = 1";
-            PreparedStatement ps = c.prepareStatement(sql);
-
-
-            ResultSet rs = ps.executeQuery();
-
-            ;
-            while(rs.next()) {
-                Reimbursement currentReim = new Reimbursement(rs.getString("first_name")
-                        ,rs.getString("last_name"),rs.getString("content")
-                        ,rs.getInt("reimbursement_id"),rs.getDouble("amount")
-                        ,rs.getInt("status_id"),rs.getString("status"),rs.getString("created"));
-                list.add(currentReim);
-            }
-
-
-        } catch (SQLException e) {
-            throw new P1DataException("Could not connect to database", e);
-        }
-        return  list;
-    }
-
     public ArrayList<Reimbursement> findEmployeeReimbursement(String id) {
         ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
         try(Connection c = manager.getConnection()) {
@@ -103,25 +75,6 @@ public class JDBCRepository {
         return list;
     }
 
-    public void updateReimbursementStatus(String status, String id) {
-
-        try(Connection c = manager.getConnection()) {
-            String sql = "UPDATE reimbursement " +
-                    "SET status_id = " + status +
-                    " WHERE reimbursement_id =" + id;
-            PreparedStatement ps = c.prepareStatement(sql);
-
-
-            ps.executeUpdate();
-
-
-
-        } catch (SQLException e) {
-            throw new P1DataException("Could not connect to database", e);
-        }
-
-    }
-
     public ArrayList<Employee> findALLEmployees() {
         ArrayList<Employee> list = new ArrayList<Employee>();
         try(Connection c = manager.getConnection()) {
@@ -138,6 +91,34 @@ public class JDBCRepository {
                         ,rs.getString("last_name"),rs.getInt("user_id")
                         ,rs.getString("email"));
                 list.add(currentEmployee);
+            }
+
+
+        } catch (SQLException e) {
+            throw new P1DataException("Could not connect to database", e);
+        }
+        return  list;
+    }
+
+    public ArrayList<Reimbursement> findALLPendingReimbursement() {
+        ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
+        try(Connection c = manager.getConnection()) {
+            String sql = "SELECT first_name, last_name,content,reimbursement_id,amount,reimbursement.status_id,status,created \n" +
+                    "FROM reimbursement join the_user on the_user.user_id = reimbursement.user_id \n" +
+                    "join reimbursement_status on reimbursement.status_id = reimbursement_status.status_id \n" +
+                    "WHERE reimbursement.status_id = 1";
+            PreparedStatement ps = c.prepareStatement(sql);
+
+
+            ResultSet rs = ps.executeQuery();
+
+            ;
+            while(rs.next()) {
+                Reimbursement currentReim = new Reimbursement(rs.getString("first_name")
+                        ,rs.getString("last_name"),rs.getString("content")
+                        ,rs.getInt("reimbursement_id"),rs.getDouble("amount")
+                        ,rs.getInt("status_id"),rs.getString("status"),rs.getString("created"));
+                list.add(currentReim);
             }
 
 
@@ -192,36 +173,29 @@ public class JDBCRepository {
         }
 
     }
+    public void updateReimbursementStatus(String status, String id) {
 
-    public ArrayList<ReimbursementEmployee> getPendingStatus (int user_id) {
         try(Connection c = manager.getConnection()) {
-            String sql = "SELECT content, amount, created, status FROM reimbursement NATURAL JOIN reimbursement_status " +
-                    "WHERE user_id = ? and status_id = 1 order by reimbursement_id desc";
+            String sql = "UPDATE reimbursement " +
+                    "SET status_id = " + status +
+                    " WHERE reimbursement_id =" + id;
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1, user_id);
 
-            ResultSet rs = ps.executeQuery();
 
-            ArrayList<ReimbursementEmployee> arrayList = new ArrayList<>();
-            while(rs.next()) {
-                ReimbursementEmployee currentReim = new ReimbursementEmployee(rs.getString("content"),
-                        rs.getDouble("amount"), rs.getString("created"), rs.getString("status"));
+            ps.executeUpdate();
 
-                arrayList.add(currentReim);
-            }
-
-            return arrayList;
 
 
         } catch (SQLException e) {
             throw new P1DataException("Could not connect to database", e);
         }
+
     }
 
-    public ArrayList<ReimbursementEmployee> getResolvedStatus (int user_id) {
+    public ArrayList<ReimbursementEmployee> getPendingStatus (int user_id) {
         try(Connection c = manager.getConnection()) {
             String sql = "SELECT content, amount, created, status FROM reimbursement NATURAL JOIN reimbursement_status " +
-                    "WHERE user_id = ? and (status_id = 2 or status_id = 3) order by reimbursement_id desc";
+                    "WHERE user_id = ? and status_id = 1 order by reimbursement_id desc";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, user_id);
 
@@ -307,4 +281,28 @@ public class JDBCRepository {
         }
     }
 
+    public ArrayList<ReimbursementEmployee> getResolvedStatus (int user_id) {
+        try(Connection c = manager.getConnection()) {
+            String sql = "SELECT content, amount, created, status FROM reimbursement NATURAL JOIN reimbursement_status " +
+                    "WHERE user_id = ? and (status_id = 2 or status_id = 3) order by reimbursement_id desc";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, user_id);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<ReimbursementEmployee> arrayList = new ArrayList<>();
+            while(rs.next()) {
+                ReimbursementEmployee currentReim = new ReimbursementEmployee(rs.getString("content"),
+                        rs.getDouble("amount"), rs.getString("created"), rs.getString("status"));
+
+                arrayList.add(currentReim);
+            }
+
+            return arrayList;
+
+
+        } catch (SQLException e) {
+            throw new P1DataException("Could not connect to database", e);
+        }
+    }
 }

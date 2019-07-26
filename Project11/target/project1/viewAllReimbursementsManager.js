@@ -26,8 +26,8 @@ function getJsonData() {
         dataType: "json",
 
         success: function(data) {
-            var obj1 = JSON.stringify(data.allReimbursements);
-            var obj = JSON.parse(obj1);
+            let obj1 = JSON.stringify(data.allReimbursements);
+            let obj = JSON.parse(obj1);
             for (k = 0; k < obj.length; k++) {
                 newElement(obj[k].firstName,obj[k].lastName,obj[k].theContents,obj[k].amount,obj[k].created ,obj[k].status);
             }

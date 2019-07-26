@@ -30,9 +30,13 @@
             } else {
                 if(jsonResponse.employee == true) {
                     document.cookie = "user_id =" + jsonResponse.userId;
-                    //console.log(getCookie("user_id"));
+                    console.log(getCookie("user_id"));
+                    //alert(getCookie("user_id"));
                     location.href = "EmployeeMain.html"
                 } else if (jsonResponse.employee == false) {
+                    document.cookie = "user_id =" + jsonResponse.userId;
+                    console.log(getCookie("user_id"));
+                    //alert(getCookie("user_id"));
                     location.href = "HomeScreenManager.html"
                 }
             }
@@ -45,4 +49,18 @@
     xhttp.setRequestHeader("Content-type","application/json");
     xhttp.send(JSON.stringify(loginObj));
 })
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 })();

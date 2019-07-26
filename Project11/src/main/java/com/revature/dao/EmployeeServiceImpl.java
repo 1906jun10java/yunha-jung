@@ -13,7 +13,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void createRequestForm(int user_id, String content, double amount, String created) {
-        employeeRepository.createRequestForm(user_id, content, amount, created);
+        employeeRepository.createRequestForm(user_id, content, amount, created  );
     }
 
     @Override

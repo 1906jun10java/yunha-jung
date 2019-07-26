@@ -11,14 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 public class AuthenticationServlet extends HttpServlet {
     UserAuthentication userAuthentication;
-    //private final Logger LOG = Logger.getLogger(String.valueOf(AuthenticationServlet.class));
+    private final Logger LOG = Logger.getLogger(String.valueOf(AuthenticationServlet.class));
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -31,7 +30,7 @@ public class AuthenticationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestURI = req.getRequestURI();
         User u;
-       // LOG.info("Login Attempt");
+        LOG.info("Login Attempt");
         if("/Project11_war/login".equals(requestURI)) {
             if(req.getContentType().equals("application/json")) {
                 u = new ObjectMapper().readValue(req.getInputStream(), User.class);
@@ -42,7 +41,7 @@ public class AuthenticationServlet extends HttpServlet {
                 ResponseLogin response = new ResponseLogin();
 
                 if(test == null) {
-                    //LOG.info("Login Failed");
+                    LOG.info("Login Failed");
                     ObjectMapper objectMapper = new ObjectMapper();
                     response.setUserExist(false);
                     String jsonString = objectMapper.writeValueAsString(response);
@@ -51,7 +50,7 @@ public class AuthenticationServlet extends HttpServlet {
                     out.print(jsonString);
                     out.close();
                 } else {
-                    //LOG.info("Login Success");
+                    LOG.info("Login Success");
                     ObjectMapper objectMapper = new ObjectMapper();
 
                     response.setUserExist(true);

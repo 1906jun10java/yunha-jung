@@ -58,6 +58,7 @@ document.getElementById("first-update-btn").addEventListener('click', evt => {
         xhttp.open("GET", "http://localhost:8080/Project11_war/updateinfo/?user_id=" + user_id + "&status=first&update=" + newFirst, true);
         xhttp.setRequestHeader("Content-type","application/json");
         xhttp.send();
+        location.reload();
     }
 })
 
@@ -76,6 +77,7 @@ document.getElementById("last-update-btn").addEventListener('click', evt => {
         xhttp.open("GET", "http://localhost:8080/Project11_war/updateinfo/?user_id=" + user_id + "&status=last&update=" + newLast, true);
         xhttp.setRequestHeader("Content-type","application/json");
         xhttp.send();
+        location.reload();
     }
 })
 

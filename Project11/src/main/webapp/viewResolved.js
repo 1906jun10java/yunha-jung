@@ -24,7 +24,7 @@
             console.log(arr.reimbursements[0].content);
 
             for(let i = arr.reimbursements.length-1; i >= 0 ; i--) {
-                newElement(arr.reimbursements[i].content, arr.reimbursements[i].amount, arr.reimbursements[i].date, arr.reimbursements[i].status);
+                newElement(arr.reimbursements[i].content, arr.reimbursements[i].amount, arr.reimbursements[i].created, arr.reimbursements[i].status);
             }
 
 
